@@ -16,8 +16,16 @@ from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 import uvicorn
 
-from analyze_v2 import run_analysis
+from analyze_v2 import run_analysis, _get_whisper_model
 from export_html import build_single_student_html
+
+# 启动时预下载模型
+print("🦊 预加载 Whisper base 模型...")
+try:
+    _get_whisper_model("base")
+    print("✅ 模型就绪")
+except Exception as e:
+    print(f"⚠️ 模型预加载失败: {e}")
 
 app = FastAPI(title="小狐泥PTE口语诊断")
 
