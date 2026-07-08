@@ -24,9 +24,14 @@ from analyze_v2 import run_analysis, _get_whisper_model
 from export_html import build_single_student_html
 
 CUSTOM_CSS = """
-.gradio-container { max-width: 640px !important; margin: 0 auto !important; }
+.gradio-container { max-width: 640px !important; margin: 0 auto !important; min-height: 100vh; }
 body, .gradio-container { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif !important; }
-footer { visibility: hidden; }
+footer { display: none !important; }
+/* 隐藏 loading 条，避免手机页面抖动 */
+#loading, .progress-bar, .eta-bar, .wrap.hide, .generating, .pending { display: none !important; }
+.wrap.default { min-height: auto !important; }
+/* 底部进度条 */
+.interface-queue, .dark .interface-queue { display: none !important; }
 """
 
 
