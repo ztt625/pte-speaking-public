@@ -6,6 +6,19 @@
 
 import sys
 import os
+
+# ═══ 内存优化：必须在导入重型库之前设置 ═══
+os.environ["MALLOC_ARENA_MAX"] = "2"          # glibc 减少内存碎片
+os.environ["OMP_NUM_THREADS"] = "1"           # 限制 OpenMP 线程数
+os.environ["MKL_NUM_THREADS"] = "1"           # 限制 MKL 线程数
+os.environ["OPENBLAS_NUM_THREADS"] = "1"      # 限制 OpenBLAS 线程数
+
+import matplotlib
+matplotlib.use("Agg")                         # 非交互后端，省内存
+import matplotlib.pyplot as plt
+plt.rcParams["figure.max_open_warning"] = 0
+plt.rcParams["figure.dpi"] = 72               # 降低 DPI 省内存
+
 import tempfile
 import traceback
 from pathlib import Path
