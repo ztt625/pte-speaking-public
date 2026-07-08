@@ -3,7 +3,8 @@ title: 小狐泥PTE口语诊断
 emoji: 🦊
 colorFrom: yellow
 colorTo: yellow
-sdk: docker
+sdk: gradio
+sdk_version: 3.50.2
 app_file: app.py
 pinned: false
 ---
