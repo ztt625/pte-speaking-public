@@ -1,0 +1,14 @@
+librosa
+numpy
+scipy
+matplotlib
+faster-whisper
+praat-parselmouth
+soundfile
+pandas
+markdown
+Pillow
+requests
+nltk
+edge-tts
+gradio
