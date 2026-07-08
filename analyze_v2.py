@@ -3584,13 +3584,6 @@ def generate_markdown_draft(audio_path, rhythm, pitch, flags, whisper_result, co
         lines.append("> 💡 上传**原文**可获取基于语法结构的意群建议（当前未提供原文，无法分析）")
         lines.append("")
 
-    if mismatches:
-        lines.append(f"**意群对比**（实际 vs 建议）：")
-        for m in mismatches[:5]:
-            lines.append(f"- {m['desc']}：{m['at']} ({m['gap_ms']}ms)")
-        if len(mismatches) > 5:
-            lines.append(f"- ...共 {len(mismatches)} 处不匹配")
-        lines.append("")
     # 以下指标详见 Web 界面「节奏详情」Tab
     lines.append("")
     lines.append("")
