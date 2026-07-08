@@ -125,7 +125,8 @@ async def diagnose(audio: UploadFile = File(...), text: str = Form("")):
         )
     except Exception as e:
         os.unlink(tmp.name)
-        return JSONResponse({"detail": str(e)}, 500)
+        tb = traceback.format_exc()
+        return JSONResponse({"detail": f"{e}\n{tb[-500:]}"}, 400)
 
     export_data = {
         "student_name": "同学", "audio_path": tmp.name,
@@ -136,7 +137,8 @@ async def diagnose(audio: UploadFile = File(...), text: str = Form("")):
         html_path = build_single_student_html(export_data)
     except Exception as e:
         os.unlink(tmp.name)
-        return JSONResponse({"detail": str(e)}, 500)
+        tb = traceback.format_exc()
+        return JSONResponse({"detail": f"{e}\n{tb[-500:]}"}, 400)
 
     summary = (
         f"语速: {result['rhythm']['wpm']} WPM | "
