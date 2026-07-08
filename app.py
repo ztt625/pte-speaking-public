@@ -23,14 +23,6 @@ import gradio as gr
 from analyze_v2 import run_analysis, _get_whisper_model
 from export_html import build_single_student_html
 
-# ── 启动时预加载 Whisper 模型（首次诊断不用等下载）──
-print("🦊 预加载 Whisper 模型...")
-try:
-    _get_whisper_model("base")
-    print("✅ base 模型就绪")
-except Exception as e:
-    print(f"⚠️ 模型预加载失败: {e}")
-
 CUSTOM_CSS = """
 .gradio-container { max-width: 640px !important; margin: 0 auto !important; }
 body, .gradio-container { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif !important; }
@@ -63,7 +55,7 @@ def diagnose(audio_file, text):
             audio_path=audio_path,
             ref_path=None,
             text=text_clean,
-            model_name="base",
+            model_name="tiny",
             student_name="同学",
             question_type="RA",
         )
