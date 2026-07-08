@@ -60,7 +60,7 @@ def diagnose(audio_file, text):
             audio_path=audio_path,
             ref_path=None,
             text=text_clean,
-            model_name="tiny",
+            model_name="base",
             student_name="同学",
             question_type="RA",
         )
@@ -147,5 +147,9 @@ with gr.Blocks(
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 7860))
-    demo.launch(server_name="0.0.0.0", server_port=port)
+    # Render 用 PORT 环境变量，HF Space 用 7860
+    if "RENDER" in os.environ:
+        port = int(os.environ.get("PORT", 7860))
+        demo.launch(server_name="0.0.0.0", server_port=port)
+    else:
+        demo.launch(server_name="0.0.0.0", server_port=7860)
