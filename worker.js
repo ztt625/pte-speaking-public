@@ -1,7 +1,7 @@
 export default {
   async fetch(request) {
     const url = new URL(request.url);
-    const target = 'https://pte-speaking-public.onrender.com';
+    const target = 'https://ztt625-tonigjw.hf.space';
     const targetUrl = target + url.pathname + url.search;
 
     const modified = new Request(targetUrl, {
@@ -10,7 +10,7 @@ export default {
       body: request.body,
       redirect: 'manual',
     });
-    modified.headers.set('Host', 'pte-speaking-public.onrender.com');
+    modified.headers.set('Host', 'ztt625-tonigjw.hf.space');
 
     let response = await fetch(modified);
     return response;
